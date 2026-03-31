@@ -1,0 +1,27 @@
+---
+# Specify the upgrade strategy for the APT package manager.
+# - dist: Perform a distribution upgrade (recommended for system-wide upgrades)
+# - full: Full upgrade (installs the newest versions of all packages)
+# - no: Do not perform any upgrade
+# - safe: Only upgrade safe packages
+# - yes: Automatically accept all prompts and perform the upgrade
+update_upgrade_command: dist
+
+# Set the time in seconds for how long the APT cache is considered valid.
+# After this period, the cache will be refreshed before updating packages.
+update_cache_valid_time: 1
+
+# Automatically remove packages that were installed as dependencies but are no longer needed
+# after the package update process (Debian/Ubuntu)
+update_autoremove: true
+
+# Specify whether to reboot the system after a package update.
+# - true: Automatically reboot after updating packages if required
+# - false: Do not reboot automatically after the update process
+update_reboot: true
+
+# Exclude specific packages from being updated.
+# This is useful for packages that should not be upgraded due to compatibility or stability reasons.
+# update_excluded_packages:
+#   - kernel
+update_excluded_packages: []

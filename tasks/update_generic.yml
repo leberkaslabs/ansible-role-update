@@ -1,0 +1,6 @@
+---
+- name: Upgrade all packages to latest version (generic)
+  ansible.builtin.package:
+    name: "*"
+    state: latest # noqa package-latest
+  notify: reboot system

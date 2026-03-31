@@ -1,0 +1,34 @@
+---
+argument_specs:
+  main:
+    author: Niclas Spreng
+    description: Install updates on linux systems.
+    short_description: update
+    options:
+      update_upgrade_command:
+        choices:
+          - "no"
+          - "yes"
+          - dist
+          - full
+          - safe
+        description: Specify the upgrade strategy for the APT package manager.
+        required: false
+        type: str
+      update_cache_valid_time:
+        description: Set the time in seconds for how long the APT cache is considered valid.
+        required: false
+        type: int
+      update_autoremove:
+        description: Automatically remove packages that were installed as dependencies but are no longer needed.
+        required: false
+        type: bool
+      update_reboot:
+        description: Specify whether to reboot the system after a package update.
+        required: true
+        type: bool
+      update_excluded_packages:
+        description: Exclude specific packages from being updated.
+        elements: str
+        required: true
+        type: list

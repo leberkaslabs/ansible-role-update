@@ -1,0 +1,11 @@
+---
+- name: Include package manager-specific update tasks
+  ansible.builtin.include_tasks: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        # yamllint disable-line rule:quoted-strings
+        - "update_{{ ansible_facts.pkg_mgr | lower }}.yml"
+        - update_generic.yml
+      paths:
+        - tasks

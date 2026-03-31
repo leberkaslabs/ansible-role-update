@@ -1,0 +1,21 @@
+---
+- name: Hold specified packages to prevent upgrades (apt)
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop: "{{ update_excluded_packages }}"
+
+- name: Refresh cache and upgrade installed packages (apt)
+  ansible.builtin.apt:
+    cache_valid_time: "{{ update_cache_valid_time }}"
+    update_cache: true
+    upgrade: "{{ update_upgrade_command }}"
+  notify: reboot system
+  environment:
+    DEBIAN_FRONTEND: nointeractive
+
+- name: Remove unused packages (apt)
+  ansible.builtin.apt:
+    autoremove: "{{ update_autoremove }}"
+  environment:
+    DEBIAN_FRONTEND: nointeractive

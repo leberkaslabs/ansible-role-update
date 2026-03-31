@@ -1,0 +1,7 @@
+---
+- name: Upgrade all packages to latest version (dnf)
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest # noqa package-latest
+    exclude: "{{ update_excluded_packages | default(omit) }}"
+  notify: reboot system
